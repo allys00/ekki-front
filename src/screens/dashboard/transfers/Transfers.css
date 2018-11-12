@@ -1,0 +1,9 @@
+.ant-list-item {
+  display: flex;
+  flex-direction: row-reverse; }
+  .ant-list-item .ant-list-item-content {
+    width: 50px;
+    font-size: 22px;
+    flex: unset;
+    justify-content: center;
+    align-items: center; }
