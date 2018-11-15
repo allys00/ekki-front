@@ -5,4 +5,10 @@ export const getUser = id => ({
   payload: id
 })
 
+export const logout = () => ({
+  type: actions.ASYNC_LOGOUT,
+})
+
+
+
 

@@ -3,12 +3,16 @@ export const actions = {
   ASYNC_REGISTER: "ASYNC_REGISTER",
   ASYNC_GET_USER: "ASYNC_GET_USER",
   CHANGE_USER_LOGGED: "CHANGE_USER_LOGGED",
+  ASYNC_LOGOUT: "ASYNC_LOGOUT",
+  ASYNC_CHECK_TRANSFER_IS_VALID: "ASYNC_CHECK_TRANSFER_IS_VALID",
+  CHANGE_NEW_TRANSFER_ITEM: "CHANGE_NEW_TRANSFER_ITEM"
 }
 
-const BASEPATH = 'http://localhost:3030';
+const BASEPATH = 'http://localhost:8000'
 
 export const urls = {
   DO_LOGIN: `${BASEPATH}/account/login`,
   DO_REGISTER: `${BASEPATH}/account/register`,
+  GET_USER_BY_EMAIL: `${BASEPATH}/account/email`,
   GET_USER: `${BASEPATH}/account`,
 }

@@ -20,10 +20,10 @@ class Dashboard extends Component {
   componentDidMount() {
     const { getUser, dashboard } = this.props
     if (dashboard.userLogged._id) {
-      this.props.getUser(dashboard.userLogged._id)
+      getUser(dashboard.userLogged._id)
     } else {
       const id = sessionStorage.getItem('id')
-      this.props.getUser(id)
+      getUser(id)
     }
   }
 
@@ -32,14 +32,16 @@ class Dashboard extends Component {
     return (
       <section className="dashboard-container">
         <Header />
-        <SideMenu />
         <div className="dashboard-content">
-          <Switch>
-            <Route path={routes.CREDIT_CARDS} render={() => <CreditCards userLogged={userLogged} />} />
-            <Route path={routes.TRANSFERS} render={() => <Trasnfers userLogged={userLogged} />} />
-            <Route path={routes.HOME} render={() => <Home userLogged={userLogged} />} />
-            <Redirect from={routes.DASHBOARD} to={routes.HOME} />
-          </Switch>
+          <SideMenu />
+          <div className="dashboard-router">
+            <Switch>
+              <Route path={routes.CREDIT_CARDS} render={() => <CreditCards userLogged={userLogged} />} />
+              <Route path={routes.TRANSFERS} render={() => <Trasnfers userLogged={userLogged} />} />
+              <Route path={routes.HOME} render={() => <Home userLogged={userLogged} />} />
+              <Redirect from={routes.DASHBOARD} to={routes.HOME} />
+            </Switch>
+          </div>
         </div>
       </section >
     );

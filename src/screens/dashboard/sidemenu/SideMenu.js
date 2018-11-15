@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { Menu, Icon, Switch } from 'antd';
-import { Link } from 'react-router-dom';
-import './SideMenu.css';
+import {connect} from 'react-redux';
+import { Menu, Icon } from 'antd';
 import { routes } from '../../../App';
 import { history } from '../../../config/redux-store';
+import {logout} from '../Dashboard.actions'
 
-const { SubMenu } = Menu;
+import './SideMenu.css';
 
 class SideMenu extends Component {
 
   render() {
     return (
-      <div className="">
+      <div className="side-menu-container">
         <Menu>
           <Menu.Item key="1" onClick={() => history.push(routes.HOME)}>
             <Icon type="home" />
@@ -24,9 +24,9 @@ class SideMenu extends Component {
 
           <Menu.Item key="3" onClick={() => history.push(routes.TRANSFERS)}>
             <Icon type="solution" />
-            Histórico de transfências
+            Transfências
           </Menu.Item>
-          <Menu.Item key="4" onClick={() => history.push(routes.LOGIN)}>
+          <Menu.Item key="4" onClick={() => this.props.logout()}>
             <Icon type="logout" />
             Sair
           </Menu.Item>
@@ -36,4 +36,7 @@ class SideMenu extends Component {
   }
 }
 
-export default SideMenu
+
+
+export default connect(null, { logout })(SideMenu);
+

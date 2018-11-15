@@ -1,7 +1,7 @@
 import { actions } from '../../utils/constants';
 
 const INITIAL_STATE = {
-  userLogged: {}
+  userLogged: {},
 }
 
 export default (state = INITIAL_STATE, action) => {

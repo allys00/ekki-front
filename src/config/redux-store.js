@@ -6,6 +6,7 @@ import { routerMiddleware, routerReducer } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga'
 import login from '../screens/login/Login.reducer';
 import dashboard from '../screens/dashboard/Dashboard.reducer';
+import transfers from '../screens/dashboard/transfers/Transfers.reducer';
 import mySaga from './main-saga'
 
 const sagaMiddleware = createSagaMiddleware()
@@ -13,6 +14,7 @@ const sagaMiddleware = createSagaMiddleware()
 const RootReducer = combineReducers({
   login,
   dashboard,
+  transfers,
   router: routerReducer,
 });
 

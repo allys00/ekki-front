@@ -1,4 +1,4 @@
-import { actions } from '../../utils/constants';
+// import { actions } from '../../utils/constants';
 
 const INITIAL_STATE = {
   requesting: false,
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 }
 
 export default (state = INITIAL_STATE, action) => {
-  const { type, payload } = action;
+  const { type } = action;
 
   switch (type) {
 

@@ -1,11 +1,35 @@
 .ant-list-item {
-  display: flex;
-  flex-direction: row-reverse;
-  .ant-list-item-content {
-    width: 50px;
-    font-size: 22px;
-    flex: unset;
-    justify-content: center;
-    align-items: center;
-  }
+    display: flex;
+    flex-direction: row-reverse;
+    .ant-list-item-content {
+        width: 50px;
+        font-size: 22px;
+        flex: unset;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.do-transfers {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    .ant-input {
+        margin-bottom: 10px;
+    }
+    .btn-transfer {
+        height: 30px;
+        width: 120px;
+    }
+}
+
+.transfers-title {
+    font-size: 20px;
+    text-align: center;
+
+    &.transfers-list {
+        margin-top: 20px;
+    }
 }

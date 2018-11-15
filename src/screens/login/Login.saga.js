@@ -1,6 +1,6 @@
 import { takeEvery, all, call, put } from 'redux-saga/effects';
 import { actions, urls } from '../../utils/constants';
-import { Post, Get } from '../../utils/functionsAPI';
+import { Post } from '../../utils/functionsAPI';
 import { history } from '../../config/redux-store';
 import { routes } from '../../App'
 

@@ -1,9 +1,12 @@
 .dashboard-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  .dashboard-content {
-    width: 75vw;
-    padding: 20px 30px;
-  }
+    .dashboard-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+    }
+    .dashboard-router {
+        width:75%;
+        padding: 20px 30px;
+    }
 }
