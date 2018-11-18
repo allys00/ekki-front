@@ -1,0 +1,13 @@
+.ant-list-split {
+    height: 45vh;
+    overflow: auto;
+    .ant-skeleton-paragraph {
+        margin: 0
+    }
+    .ant-list-item-content-single {
+        width: 100% !important;
+        .anticon {
+            padding: 10px 20px;
+        }
+    }
+}

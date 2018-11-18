@@ -9,6 +9,10 @@ export const logout = () => ({
   type: actions.ASYNC_LOGOUT,
 })
 
+export const getContacts = () => ({
+  type: actions.ASYNC_GET_CONTACTS,
+})
+
 
 
 

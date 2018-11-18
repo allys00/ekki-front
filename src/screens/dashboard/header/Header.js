@@ -1,13 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Header.css'
-class Header extends Component {
-  render() {
-    return (
-      <section className="header-container">
-      
-      </section >
-    );
-  }
-}
+const Header = ({ userLogged }) => (
+  <section className="header-container">
+    <h2>Usuário Logado: {userLogged.name}</h2>
+  </section >
+)
 
 export default Header

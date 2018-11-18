@@ -19,16 +19,34 @@
     .ant-input {
         margin-bottom: 10px;
     }
+    .email {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        width: 100%;
+        .contacts {
+            position: absolute;
+            margin-left: 40px;
+            height: 30px;
+        }
+    }
     .btn-transfer {
         height: 30px;
         width: 120px;
     }
 }
 
+.btn-contact {
+    width: 100% !important;
+    margin-bottom: 10px;
+}
+.ant-popover-title{
+    text-align: center;
+}
+
 .transfers-title {
     font-size: 20px;
     text-align: center;
-
     &.transfers-list {
         margin-top: 20px;
     }

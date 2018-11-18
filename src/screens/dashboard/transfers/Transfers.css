@@ -16,9 +16,25 @@
   align-items: flex-end; }
   .do-transfers .ant-input {
     margin-bottom: 10px; }
+  .do-transfers .email {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 100%; }
+    .do-transfers .email .contacts {
+      position: absolute;
+      margin-left: 40px;
+      height: 30px; }
   .do-transfers .btn-transfer {
     height: 30px;
     width: 120px; }
+
+.btn-contact {
+  width: 100% !important;
+  margin-bottom: 10px; }
+
+.ant-popover-title {
+  text-align: center; }
 
 .transfers-title {
   font-size: 20px;

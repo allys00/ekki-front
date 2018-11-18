@@ -1,22 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Modal } from 'antd';
 
-class ModalComponent extends Component {
-
-    render() {
-        const { visible, onOk, onCancel, children, title } = this.props;
-        return (
-            <div>
-                <Modal
-                    visible={visible}
-                    title={title}
-                    onOk={onOk}
-                    onCancel={onCancel}>
-                    {children}
-                </Modal>
-            </div>
-        );
-    }
-}
+const ModalComponent = ({ visible, footer, children, title, onClose }) => (
+    <div>
+        <Modal
+            onCancel={onClose}
+            visible={visible}
+            title={title}
+            footer={footer}
+        >
+            {children}
+        </Modal>
+    </div>
+);
 
 export default ModalComponent

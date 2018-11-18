@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class SideMenu extends Component {
+class CreditCards extends Component {
 
   render() {
     return (
@@ -11,4 +11,4 @@ class SideMenu extends Component {
   }
 }
 
-export default SideMenu
+export default CreditCards

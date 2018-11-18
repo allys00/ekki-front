@@ -9,3 +9,8 @@ export const Get = (url) => {
   return Axios.get(url)
     .then(data => data).catch(error => { throw error; });
 };
+
+export const Put = (url, data) => {
+  return Axios.put(url, data)
+    .then(data => data).catch(error => { throw error; });
+};

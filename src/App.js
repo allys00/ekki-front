@@ -16,6 +16,7 @@ export const routes = {
   TRANSFERS: '/dashboard/transfers',
   HOME: '/dashboard/home',
   CREDIT_CARDS: '/dashboard/credit_cards',
+  CONTACTS: '/dashboard/contacts'
 }
 
 class App extends Component {

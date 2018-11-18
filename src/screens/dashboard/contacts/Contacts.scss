@@ -1,0 +1,18 @@
+.contacts-container {
+    .ant-list-item-content-single {
+        width: 100%;
+    }
+    .ant-list-item {
+        flex-direction: row;
+    }
+    .ant-skeleton {
+        margin-bottom: 20px !important;
+    }
+    .add-contact {
+        display: flex;
+        align-items: center;
+        .ant-btn {
+            margin: 0 20px;
+        }
+    }
+}

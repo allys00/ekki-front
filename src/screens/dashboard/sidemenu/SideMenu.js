@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { Menu, Icon } from 'antd';
 import { routes } from '../../../App';
 import { history } from '../../../config/redux-store';
-import {logout} from '../Dashboard.actions'
+import { logout } from '../Dashboard.actions'
 
 import './SideMenu.css';
 
@@ -26,7 +26,11 @@ class SideMenu extends Component {
             <Icon type="solution" />
             Transfências
           </Menu.Item>
-          <Menu.Item key="4" onClick={() => this.props.logout()}>
+          <Menu.Item key="4" onClick={() => history.push(routes.CONTACTS)}>
+            <Icon type="user" />
+            Contatos
+          </Menu.Item>
+          <Menu.Item key="5" onClick={() => this.props.logout()}>
             <Icon type="logout" />
             Sair
           </Menu.Item>
