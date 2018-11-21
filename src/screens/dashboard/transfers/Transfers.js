@@ -18,14 +18,14 @@ import './Transfers.css'
 class Trasnfers extends Component {
 
   componentDidMount() {
-    const { getUser, dashboard } = this.props
+    const { getUser, dashboard, getTransfers } = this.props
     if (dashboard.userLogged._id) {
       getUser(dashboard.userLogged._id)
     } else {
       const id = sessionStorage.getItem('id')
       getUser(id)
     }
-    this.props.getTransfers()
+    getTransfers()
   }
 
   render() {

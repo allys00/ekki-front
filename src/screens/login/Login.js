@@ -31,7 +31,8 @@ class Login extends Component {
   }
 
   render() {
-    const { doLogin, doRegister } = this.props
+    const { doLogin, doRegister, login } = this.props
+    const {loading_login} = login
     const { optionSelected, email, name, password, passwordConf } = this.state
     return (
       <section className="login-container">
@@ -65,8 +66,16 @@ class Login extends Component {
               onChange={({ target }) => this.setState({ passwordConf: target.value })} />
           }
           {optionSelected === 'Login' ?
-            <Button type="primary" onClick={() => doLogin({ email, password })}>Entrar</Button> :
-            <Button type="primary" onClick={() => doRegister({ email, name, password, passwordConf })}>Criar conta</Button>
+            <Button 
+                type="primary" 
+                loading={loading_login} 
+                onClick={() => doLogin({ email, password })}>
+              {loading_login ? 'Entrando' : 'Entrar' }</Button> :
+            <Button
+                type="primary"
+                loading={loading_login}
+                onClick={() => doRegister({ email, name, password, passwordConf })}>
+              {loading_login ? 'Criando conta':'Criar conta'}</Button>
           }
         </div>
       </section >

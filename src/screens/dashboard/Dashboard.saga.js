@@ -5,16 +5,16 @@ import { history } from '../../config/redux-store';
 import { routes } from '../../App'
 import Notification from '../../components/Notification'
 
-function* getUser({ payload }) {
+function* getUser({ payload, action }) {
   try {
     yield put({ type: actions.SET_LOADING_GET_USER, payload: true })
     const { data } = yield call(Get, `${urls.GET_USER}/${payload}`)
     yield put({ type: actions.CHANGE_USER_LOGGED, payload: data })
+    yield put({ type: actions.SET_LOADING_GET_USER, payload: false })
+    if (action) yield put({ type: action })
   } catch (error) {
     yield Notification('error', 'Ops', 'Erro ao consultar usuário')
-  } finally {
     yield put({ type: actions.SET_LOADING_GET_USER, payload: false })
-
   }
 }
 

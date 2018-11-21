@@ -14,3 +14,8 @@ export const Put = (url, data) => {
   return Axios.put(url, data)
     .then(data => data).catch(error => { throw error; });
 };
+
+export const Delete = (url) => {
+  return Axios.delete(url)
+    .then(data => data).catch(error => { throw error; });
+};

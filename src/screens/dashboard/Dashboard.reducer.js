@@ -2,7 +2,8 @@ import { actions } from '../../utils/constants';
 
 const INITIAL_STATE = {
   userLogged: {
-    contacts: []
+    contacts: [],
+    credit_cards: []
   },
   loading_get_user: false
 }
@@ -16,7 +17,7 @@ export default (state = INITIAL_STATE, action) => {
 
     case actions.SET_LOADING_GET_USER:
       return { ...state, loading_get_user: payload }
-
+      
     default:
       return state
   }

@@ -1,8 +1,9 @@
 import { actions } from '../../utils/constants';
 
-export const getUser = id => ({
+export const getUser = (id, action) => ({
   type: actions.ASYNC_GET_USER,
-  payload: id
+  payload: id,
+  action
 })
 
 export const logout = () => ({

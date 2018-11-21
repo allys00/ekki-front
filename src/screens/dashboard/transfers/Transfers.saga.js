@@ -7,6 +7,7 @@ import { status_transfer } from './Transfers.reducer';
 
 function* checkTransfer({ payload }) {
   try {
+    yield put({ type: actions.SET_LOADING_NEW_TRANSFER, payload: true })
     if (realToCents(payload.value) < 100) {
       return yield Notification('warning', 'Atenção', 'Transferência minima de R$1,00')
     }
@@ -44,7 +45,10 @@ function* checkTransfer({ payload }) {
         yield Notification('error', 'Ops', error)
       }
     }
+  }finally {
+    yield put({ type: actions.SET_LOADING_NEW_TRANSFER, payload: true })
   }
+
 }
 
 function* newTransfer({ payload }) {

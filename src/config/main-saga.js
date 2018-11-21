@@ -4,6 +4,8 @@ import LoginSaga from '../screens/login/Login.saga';
 import DashboardSaga from '../screens/dashboard/Dashboard.saga';
 import Transfers from '../screens/dashboard/transfers/Transfers.saga';
 import Contacts from '../screens/dashboard/contacts/Contacts.saga';
+import CreditCards from '../screens/dashboard/creditcards/CreditCards.saga';
+
 
 export default function* RootSaga() {
   yield all([
@@ -11,6 +13,7 @@ export default function* RootSaga() {
     DashboardSaga(),
     Transfers(),
     Contacts(),
+    CreditCards(),
   ]);
 }
 
