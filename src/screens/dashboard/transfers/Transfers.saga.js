@@ -45,8 +45,8 @@ function* checkTransfer({ payload }) {
         yield Notification('error', 'Ops', error)
       }
     }
-  }finally {
-    yield put({ type: actions.SET_LOADING_NEW_TRANSFER, payload: true })
+  } finally {
+    yield put({ type: actions.SET_LOADING_NEW_TRANSFER, payload: false })
   }
 
 }
@@ -78,11 +78,30 @@ function* getTransfers({ payload }) {
   }
 }
 
+function* useCreditCard({ payload }) {
+  try {
+    const { dashboard, transfers } = yield select((state) => state)
+    const { newTransfer } = transfers
+    const { balance } = dashboard.userLogged
+    const valueToCredit = newTransfer.value - balance
+    if (valueToCredit > payload.credit) {
+      return Notification('error', 'Ops', 'Sem crédito suficiente');
+    }
+    newTransfer.credit = { value: valueToCredit, _id: payload._id, number: payload.number }
+    yield put({ type: actions.CHANGE_NEW_TRANSFER_ITEM, payload: newTransfer })
+    yield put({ type: actions.CHANGE_TRANSFER_STATUS, payload: 2 })
+  } catch (error) {
+
+  }
+
+}
+
 export default function* MySaga() {
   yield all([
     yield takeEvery(actions.ASYNC_CHECK_TRANSFER_IS_VALID, checkTransfer),
     yield takeEvery(actions.ASYNC_NEW_TRANSFER, newTransfer),
     yield takeEvery(actions.ASYNC_GET_TRANSFERS, getTransfers),
+    yield takeEvery(actions.ASYNC_USE_CREDIT_CARD, useCreditCard)
 
   ]);
 }

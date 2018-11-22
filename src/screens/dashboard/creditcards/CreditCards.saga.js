@@ -22,12 +22,11 @@ function* addCreditCards({ payload }) {
 
 function* getCreditCards() {
   try {
-    console.log('oi')
     yield put({ type: actions.LOADING_GET_CREDIT_CARDS, payload: true })
     const myUser = yield select(({ dashboard }) => dashboard.userLogged);
+    if (myUser.credit_cards.length <= 0) return
     const credit_cards = yield all(myUser.credit_cards.map(credit_card => call(Get, `${urls.CREDIT_CARD}/${credit_card._id}`)))
     myUser.credit_cards = credit_cards.map(a => a.data)
-    console.log(myUser)
     yield put({ type: actions.CHANGE_USER_LOGGED, payload: myUser })
   } catch (error) {
     console.log(error)

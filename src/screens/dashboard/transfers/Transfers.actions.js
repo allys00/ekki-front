@@ -24,3 +24,9 @@ export const changeTransferForm = newItem => ({
 export const getTransfers = () => ({
   type: actions.ASYNC_GET_TRANSFERS,
 })
+
+
+export const clickInCard = (credit_card) => ({
+  type: actions.ASYNC_USE_CREDIT_CARD,
+  payload: credit_card
+})

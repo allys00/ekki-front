@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input, Button, Popover } from 'antd';
 import CurrencyInput from 'react-currency-input';
+import CreditCards from '../creditcards/CreditCards'
 import {
   checkTransfer,
   changeTransferForm,
   changeTransferStatus,
   doTransfer,
-  getTransfers
+  getTransfers,
+  clickInCard
 } from './Transfers.actions';
+
 import { getUser } from '../Dashboard.actions'
 import TransferVerification from './transfer_verification/Transfer_verification';
 import TransfersList from './transfers_list/Transfers_list'
@@ -35,6 +38,7 @@ class Trasnfers extends Component {
       doTransfer,
       changeTransferForm,
       dashboard,
+      clickInCard
     } = this.props
     const {
       history_transfers,
@@ -84,10 +88,11 @@ class Trasnfers extends Component {
             className="btn-transfer"
             type="primary"
             icon="export"
+            loading={loading_new_transfer}
             onClick={() => checkTransfer(transfer_form)}
             size={'small'}>Transferir</Button>
         </div>
-        <h2 className="transfers-title transfers-list">Hitórico de transferências</h2>
+        <h2 className="transfers-title transfers-list">Histórico de transferências</h2>
         <TransfersList
           loading={loading_get_transfers}
           transfers={history_transfers}
@@ -95,21 +100,24 @@ class Trasnfers extends Component {
         <Modal
           visible={status === 1}
           onClose={() => changeTransferStatus(0)}
+          footer={[
+            <Button key="back" onClick={() => changeTransferStatus(0)}>Cancelar</Button>
+          ]}
           title="Cartão de crédito">
-          Cartão de crédito
-				</Modal>
+          <CreditCards openFromModal={true} clickInCard={clickInCard} />
+        </Modal>
         <Modal
           visible={status === 2}
           title="Confirmar Transferência"
           onClose={() => changeTransferStatus(0)}
           footer={[
-            <Button key="back" onClick={console.log}>Cancelar</Button>,
+            <Button key="back" onClick={() => changeTransferStatus(0)}>Cancelar</Button>,
             <Button key="submit"
               type="primary"
               loading={loading_new_transfer}
               onClick={() => doTransfer(newTransfer)}>
               Transferir
-                        </Button>,
+              </Button>,
           ]}
         >
           <TransferVerification newTransfer={newTransfer} />
@@ -127,6 +135,7 @@ export default connect(mapStateToProps, {
   checkTransfer,
   changeTransferStatus,
   getUser,
+  clickInCard,
   changeTransferForm,
 })(Trasnfers);
 

@@ -7,7 +7,6 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     const { type, payload } = action;
-    console.log(action)
     switch (type) {
         case actions.LOADING_NEW_CREDIT_CARD:
             return { ...state, loading_new_credit_card: payload }

@@ -9,6 +9,7 @@ function* getUser({ payload, action }) {
   try {
     yield put({ type: actions.SET_LOADING_GET_USER, payload: true })
     const { data } = yield call(Get, `${urls.GET_USER}/${payload}`)
+    console.log("USER", data)
     yield put({ type: actions.CHANGE_USER_LOGGED, payload: data })
     yield put({ type: actions.SET_LOADING_GET_USER, payload: false })
     if (action) yield put({ type: action })
