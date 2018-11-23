@@ -1,14 +1,7 @@
 import React, { Component } from 'react'
 import { Select, Button } from 'antd';
+import { getDays } from '../../../../utils/functions';
 const Option = Select.Option;
-
-const getDays = () => {
-    let days = []
-    for (let x = 1; x <= 30; x++) {
-        days.push(x)
-    }
-    return days
-}
 
 export class AddCreditCard extends Component {
     constructor(props) {

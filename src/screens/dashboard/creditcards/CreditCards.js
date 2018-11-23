@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Skeleton } from 'antd';
-import { newCreditCard, getCreditCards, removeCreditCard } from './CreditCards.actions';
+import { Button, Skeleton, Select, Popover } from 'antd';
+import { newCreditCard, getCreditCards, removeCreditCard, editCreditCard } from './CreditCards.actions';
 import { getUser } from '../Dashboard.actions';
 import moment from 'moment';
 import './CreditCards.css';
 import { actions } from '../../../utils/constants';
-import { convertToReal } from '../../../utils/functions';
+import { convertToReal, getDays } from '../../../utils/functions';
 import { AddCreditCard } from './AddCreditCard/AddCreditCard';
-
+const Option = Select.Option;
 
 class CreditCards extends Component {
   constructor(props) {
     super(props)
-
+    this.state = {}
+    this.selectDay = this.selectDay.bind(this)
   }
 
   componentDidMount() {
@@ -25,6 +26,33 @@ class CreditCards extends Component {
       getUser(id, actions.ASYNC_GET_CREDIT_CARDS)
     }
   }
+
+  selectDay(credit_card) {
+    const { invoice } = this.state
+    const { loading_edit_credit_cards } = this.props.credit_cards
+    return (<div>
+      <Select
+        style={{ width: '100%' }}
+        defaultValue={credit_card.invoice}
+        onChange={(value) => this.setState({ invoice: value })}
+        placeholder="Vencimento">
+        {getDays().map((day, key) =>
+          <Option
+            key={key}
+            value={day}>{day}
+          </Option>
+        )}
+      </Select>
+      <Button
+        type="primary"
+        loading={loading_edit_credit_cards}
+        onClick={() => this.props.editCreditCard(invoice, credit_card)}
+        style={{ marginTop: '10px', width: '100%' }}>
+        {loading_edit_credit_cards ? 'Salvando' : 'Salvar'}
+      </Button>
+    </div>)
+  }
+
 
   render() {
     const { newCreditCard, dashboard, removeCreditCard, credit_cards, openFromModal, clickInCard } = this.props
@@ -45,10 +73,16 @@ class CreditCards extends Component {
                   <p ><b>Dia de vencimento: </b> {credit_card.invoice}</p>
                   <p ><b>Data de expiração: </b> {moment(credit_card.expiration).format('MM/YY')}</p>
                   {!openFromModal && <p className="actions">
-                    <Button
-                      type="primary"
-                      icon="edit"
-                      size="small" > Editar</Button>
+                    <Popover placement="bottom"
+                      trigger="click"
+                      title={'Vencimento'}
+                      content={this.selectDay(credit_card)}>
+                      <Button
+                        type="primary"
+                        icon="edit"
+                        size="small" > Editar
+                        </Button>
+                    </Popover>
                     <Button
                       type="danger"
                       icon="delete"
@@ -70,4 +104,10 @@ class CreditCards extends Component {
 
 const mapStateToProps = ({ dashboard, credit_cards }) => ({ dashboard, credit_cards })
 
-export default connect(mapStateToProps, { getUser, newCreditCard, removeCreditCard, getCreditCards })(CreditCards);
+export default connect(mapStateToProps, {
+  getUser,
+  newCreditCard,
+  removeCreditCard,
+  getCreditCards,
+  editCreditCard
+})(CreditCards);

@@ -13,3 +13,7 @@ export const removeCreditCard = credit_card_id => ({
     type: actions.ASYNC_REMOVE_CREDIT_CARD,
     payload: credit_card_id
 })
+export const editCreditCard = (invoice, credit_card) => ({
+    type: actions.ASYNC_EDIT_CREDIT_CARD,
+    payload: { invoice, credit_card }
+})

@@ -12,11 +12,18 @@ export const convertToReal = (allCents) => {
   }
   value = Number(value).toLocaleString('pt-BR')
   if (cents === 0) value += ',00'
-  else if (cents < 10) value += `,0${cents}`
-
+  else if (cents > 10 && cents % 10 === 0) value += `,${cents}0`
   return value
 }
 
 export const realToCents = (real = '') => {
   return Number(real.replace(/(<|,|\.|>)/g, "").replace("R$", ""));
+}
+
+export const getDays = () => {
+  let days = []
+  for (let x = 1; x <= 30; x++) {
+    days.push(x)
+  }
+  return days
 }

@@ -54,10 +54,9 @@ function* checkTransfer({ payload }) {
 function* newTransfer({ payload }) {
   try {
     yield put({ type: actions.SET_LOADING_NEW_TRANSFER, payload: true })
-    const { data } = yield call(Post, urls.TRANSFERS, payload);
-    const { history_transfers } = yield select(({ transfers }) => transfers);
-    history_transfers.unshift(data)
-    yield put({ type: actions.FINISH_TRANSFER, payload: history_transfers })
+    yield call(Post, urls.TRANSFERS, payload);
+    yield call(getTransfers, payload.sender._id)
+    yield put({ type: actions.CHANGE_TRANSFER_STATUS, payload: 0 })
     yield Notification('success', 'Sucesso', 'Tranferência realizada')
   } catch (error) {
     yield Notification('error', 'Ops', 'Erro ao execultar transferência')
@@ -91,7 +90,7 @@ function* useCreditCard({ payload }) {
     yield put({ type: actions.CHANGE_NEW_TRANSFER_ITEM, payload: newTransfer })
     yield put({ type: actions.CHANGE_TRANSFER_STATUS, payload: 2 })
   } catch (error) {
-
+    return Notification('error', 'Ops', 'erro ao utilizar o cartão');
   }
 
 }
