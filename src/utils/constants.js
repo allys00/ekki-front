@@ -30,7 +30,8 @@ export const actions = {
   LOADING_NEW_CREDIT_CARD: "LOADING_NEW_CREDIT_CARD",
   ASYNC_USE_CREDIT_CARD: "ASYNC_USE_CREDIT_CARD",
   ASYNC_EDIT_CREDIT_CARD: "ASYNC_EDIT_CREDIT_CARD",
-  LOADING_EDIT_CREDIT_CARD: "LOADING_EDIT_CREDIT_CARD"
+  LOADING_EDIT_CREDIT_CARD: "LOADING_EDIT_CREDIT_CARD",
+  ASYNC_FORGOT_PASSWORD: "ASYNC_FORGOT_PASSWORD"
 }
 
 const BASEPATH = 'http://localhost:8000'
@@ -38,6 +39,7 @@ const BASEPATH = 'http://localhost:8000'
 export const urls = {
   DO_LOGIN: `${BASEPATH}/account/login`,
   DO_REGISTER: `${BASEPATH}/account/register`,
+  FORGOT_PASSWORD: `${BASEPATH}/account/forgot_password`,
   GET_USER_BY_EMAIL: `${BASEPATH}/account/email`,
   GET_USER: `${BASEPATH}/account`,
   TRANSFERS: `${BASEPATH}/transfer`,

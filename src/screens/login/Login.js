@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Input, Button } from 'antd';
-import { doLogin, doRegister } from './Login.actions';
+import { doLogin, doRegister, forgotPassword } from './Login.actions';
 import './Login.css';
 
 const options = [
@@ -30,9 +30,16 @@ class Login extends Component {
     })
   }
 
+  onKeyDown = ({ key }) => {
+    const { email, password, optionSelected } = this.state
+    if (key === 'Enter' && optionSelected === 'Login') {
+      this.props.doLogin({ email, password })
+    }
+  }
+
   render() {
-    const { doLogin, doRegister, login } = this.props
-    const {loading_login} = login
+    const { doLogin, doRegister, login, forgotPassword } = this.props
+    const { loading_login } = login
     const { optionSelected, email, name, password, passwordConf } = this.state
     return (
       <section className="login-container">
@@ -56,6 +63,7 @@ class Login extends Component {
           <Input
             value={password}
             type="password"
+            onKeyDown={this.onKeyDown}
             placeholder="Senha"
             onChange={({ target }) => this.setState({ password: target.value })} />
           {optionSelected === 'Criar Conta' &&
@@ -66,18 +74,19 @@ class Login extends Component {
               onChange={({ target }) => this.setState({ passwordConf: target.value })} />
           }
           {optionSelected === 'Login' ?
-            <Button 
-                type="primary" 
-                loading={loading_login} 
-                onClick={() => doLogin({ email, password })}>
-              {loading_login ? 'Entrando' : 'Entrar' }</Button> :
             <Button
-                type="primary"
-                loading={loading_login}
-                onClick={() => doRegister({ email, name, password, passwordConf })}>
-              {loading_login ? 'Criando conta':'Criar conta'}</Button>
+              type="primary"
+              loading={loading_login}
+              onClick={() => doLogin({ email, password })}>
+              {loading_login ? 'Entrando' : 'Entrar'}</Button> :
+            <Button
+              type="primary"
+              loading={loading_login}
+              onClick={() => doRegister({ email, name, password, passwordConf })}>
+              {loading_login ? 'Criando conta' : 'Criar conta'}</Button>
           }
         </div>
+        <Button onClick={() => forgotPassword('andreallys2014@gmail.com')} >Esqueci minha senha </Button>
       </section >
     );
   }
@@ -85,4 +94,4 @@ class Login extends Component {
 
 const mapStateToProps = ({ login }) => ({ login })
 
-export default connect(mapStateToProps, { doLogin, doRegister })(Login);
+export default connect(mapStateToProps, { doLogin, doRegister, forgotPassword })(Login);

@@ -48,11 +48,13 @@ export class AddCreditCard extends Component {
                         </Select>
                     </div>
                 </div >
-                <Button
-                    type="primary"
-                    loading={loading}
-                    onClick={() => onClick(this.state)}
-                    className="btn-new-card"> {loading ? 'Gerando novo cartão' : 'Gerar cartão'} </Button>
+                <div className="generate-credit-card">
+                    <Button
+                        type="primary"
+                        loading={loading}
+                        onClick={() => onClick(this.state)}
+                        className="btn-new-card"> {loading ? 'Gerando novo cartão' : 'Gerar cartão'} </Button>
+                </div>
             </div>
         )
     }

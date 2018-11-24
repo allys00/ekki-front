@@ -8,6 +8,10 @@
     justify-content: center;
     align-items: center; }
 
+@media (min-width: 550px) {
+  .transfer-container {
+    width: 95%; } }
+
 .ant-modal {
   width: 50vw; }
 
@@ -17,6 +21,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end; }
+  @media (max-width: 550px) {
+    .do-transfers {
+      width: calc(100% - 30px); } }
   .do-transfers .ant-input {
     margin-bottom: 10px; }
   .do-transfers .email {
@@ -28,6 +35,9 @@
       position: absolute;
       margin-left: 40px;
       height: 30px; }
+      @media (max-width: 550px) {
+        .do-transfers .email .contacts {
+          margin-left: 35px; } }
   .do-transfers .btn-transfer {
     height: 30px;
     width: 120px; }
@@ -42,5 +52,8 @@
 .transfers-title {
   font-size: 20px;
   text-align: center; }
+  @media (min-width: 741px) {
+    .transfers-title {
+      text-align: left; } }
   .transfers-title.transfers-list {
     margin-top: 20px; }

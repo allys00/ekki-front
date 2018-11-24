@@ -11,3 +11,11 @@ export const doRegister = (form) => ({
 })
 
 
+export const forgotPassword = (email) => ({
+  type: actions.ASYNC_FORGOT_PASSWORD,
+  payload: email
+})
+
+
+
+

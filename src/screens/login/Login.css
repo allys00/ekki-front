@@ -8,6 +8,9 @@
   .login-container .options {
     display: flex;
     width: 350px; }
+    @media (max-width: 400px) {
+      .login-container .options {
+        width: 300px; } }
     .login-container .options .option {
       padding: 10px 20px; }
       .login-container .options .option:hover {
@@ -22,5 +25,8 @@
     width: 350px;
     background-color: #efefef;
     padding: 20px; }
+    @media (max-width: 400px) {
+      .login-container .login-form {
+        width: 300px; } }
     .login-container .login-form input {
       margin-bottom: 10px; }

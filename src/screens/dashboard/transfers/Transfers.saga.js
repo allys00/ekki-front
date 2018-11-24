@@ -56,6 +56,7 @@ function* newTransfer({ payload }) {
     yield put({ type: actions.SET_LOADING_NEW_TRANSFER, payload: true })
     yield call(Post, urls.TRANSFERS, payload);
     yield call(getTransfers, payload.sender._id)
+    yield put({ type: actions.ASYNC_GET_USER, payload: payload.sender._id })
     yield put({ type: actions.CHANGE_TRANSFER_STATUS, payload: 0 })
     yield Notification('success', 'Sucesso', 'Tranferência realizada')
   } catch (error) {

@@ -1,8 +1,22 @@
 .credit-cards-container {
+    @media (max-width: 741px) {
+        .generate-credit-card {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    }
+   
     .form-card {
         display: flex;
         flex-flow: row wrap;
         justify-content: flex-start;
+        @media (max-width: 741px) {
+            justify-content: center;
+            .form-field {
+                text-align: center;
+            }
+        }
         p {
             font-size: 15px;
             margin-bottom: 5px;
@@ -28,6 +42,9 @@
         display: flex;
         justify-content: flex-start;
         flex-flow: row wrap;
+        @media (max-width: 741px) {
+            justify-content: center;
+        }
         .credit-card-item {
             margin: 10px;
             border: 1px solid #ccc;

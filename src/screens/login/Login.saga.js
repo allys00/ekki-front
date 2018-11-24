@@ -13,10 +13,13 @@ function* doLogin({ payload }) {
     sessionStorage.setItem('id', data._id)
     yield history.push(routes.DASHBOARD)
   } catch (error) {
-    yield Notification('error', 'Erro ao entrar','Verifique seu email e senha e tente novamente')
-  }finally {
+    yield Notification('error', 'Erro ao entrar', 'Verifique seu email e senha e tente novamente')
+  } finally {
     yield put({ type: actions.SET_LOADING_LOGIN, payload: false })
   }
+}
+function* forgotPassword({ payload }) {
+  yield call(Post, urls.FORGOT_PASSWORD, { email: payload })
 }
 function* doRegister({ payload }) {
   try {
@@ -35,5 +38,7 @@ export default function* StatisticsSaga() {
   yield all([
     yield takeEvery(actions.ASYNC_LOGIN, doLogin),
     yield takeEvery(actions.ASYNC_REGISTER, doRegister),
+    yield takeEvery(actions.ASYNC_FORGOT_PASSWORD, forgotPassword),
+
   ]);
 }

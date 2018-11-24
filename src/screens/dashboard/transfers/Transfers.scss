@@ -10,6 +10,12 @@
     }
 }
 
+@media (min-width: 550px) {
+    .transfer-container {
+        width: 95%;
+    }
+}
+
 .ant-modal {
     width: 50vw;
 }
@@ -20,6 +26,9 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
+    @media (max-width: 550px) {
+        width: calc(100% - 30px);
+    }
     .ant-input {
         margin-bottom: 10px;
     }
@@ -32,6 +41,9 @@
             position: absolute;
             margin-left: 40px;
             height: 30px;
+            @media (max-width: 550px) {
+                margin-left: 35px;
+            }
         }
     }
     .btn-transfer {
@@ -52,6 +64,9 @@
 .transfers-title {
     font-size: 20px;
     text-align: center;
+    @media (min-width: 741px) {
+        text-align: left;
+    }
     &.transfers-list {
         margin-top: 20px;
     }

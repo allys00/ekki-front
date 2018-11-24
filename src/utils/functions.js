@@ -11,8 +11,11 @@ export const convertToReal = (allCents) => {
     }
   }
   value = Number(value).toLocaleString('pt-BR')
-  if (cents === 0) value += ',00'
-  else if (cents > 10 && cents % 10 === 0) value += `,${cents}0`
+  if (cents === 0) {
+    value += ',00'
+  } else if (cents > 10 && cents % 10 === 0) {
+    value += `0`
+  }
   return value
 }
 

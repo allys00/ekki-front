@@ -1,3 +1,5 @@
-.ant-menu-vertical {
-  height: 90vh;
-  width: 25vw; }
+.side-menu-container {
+  z-index: 2;
+  background-color: white; }
+  .side-menu-container ul {
+    height: 90vh; }

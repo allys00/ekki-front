@@ -1,33 +1,39 @@
 .login-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  .options {
     display: flex;
-    width: 350px;
-    .option {
-      padding: 10px 20px;
-      &:hover {
-        cursor: pointer;
-      }
-      &.selected {
-        background-color: #efefef;
-      }
-    }
-  }
-  .login-form {
-    display: flex;
+    justify-content: center;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
-    width: 350px;
-    background-color: #efefef;
-    padding: 20px;
-    input {
-      margin-bottom: 10px;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    .options {
+        display: flex;
+        width: 350px;
+        @media (max-width: 400px) {
+            width: 300px;
+        }
+        .option {
+            padding: 10px 20px;
+            &:hover {
+                cursor: pointer;
+            }
+            &.selected {
+                background-color: #efefef;
+            }
+        }
     }
-  }
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+        width: 350px;
+        background-color: #efefef;
+        padding: 20px;
+        @media (max-width: 400px) {
+            width: 300px;
+        }
+        input {
+            margin-bottom: 10px;
+        }
+    }
 }

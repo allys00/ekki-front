@@ -9,7 +9,6 @@ import { convertToReal } from '../../../utils/functions';
 class Home extends Component {
 
   componentDidMount() {
-    console.log("didMout")
     const { getUser, dashboard } = this.props
     if (dashboard.userLogged._id) {
       getUser(dashboard.userLogged._id)
@@ -24,7 +23,7 @@ class Home extends Component {
     const { balance } = userLogged
     return (
       <section className="home-container">
-        <Card title="Saldo" style={{ width: 300 }}>
+        <Card title="Saldo" className="card-saldo">
           <Skeleton paragraph={{ rows: 0 }} active loading={loading}>
             <p>R$ {convertToReal(balance)}</p>
           </Skeleton>
