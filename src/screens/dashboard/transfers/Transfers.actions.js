@@ -30,3 +30,9 @@ export const clickInCard = (credit_card) => ({
   type: actions.ASYNC_USE_CREDIT_CARD,
   payload: credit_card
 })
+
+export const checkPassword = (password, func) => ({
+  type: actions.ASYNC_CHECK_PASSWORD,
+  payload: password,
+  func: func
+})

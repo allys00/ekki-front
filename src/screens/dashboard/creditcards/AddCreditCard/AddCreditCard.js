@@ -16,7 +16,7 @@ export class AddCreditCard extends Component {
         const { flag, invoice } = this.state
         const { loading, onClick } = this.props
         return (
-            <div>
+            <div className="add-new-card">
                 <h2 className="transfers-title">Criar novo cartão de crédito</h2>
                 <div className="form-card">
                     <div className="form-field">

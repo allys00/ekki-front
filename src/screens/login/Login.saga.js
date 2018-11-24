@@ -19,7 +19,18 @@ function* doLogin({ payload }) {
   }
 }
 function* forgotPassword({ payload }) {
-  yield call(Post, urls.FORGOT_PASSWORD, { email: payload })
+  try {
+    yield put({ type: actions.LOADING_FORGOT_PASSWORD, payload: true })
+    yield call(Post, urls.FORGOT_PASSWORD, { email: payload })
+    yield Notification('success', 'Email enviado com sucesso', 'Verifique sua caixa de entrada')
+  } catch (err) {
+    let msg = 'Erro ao enviar o email'
+    if (err.status === 404) msg = 'Usuário não encontrado'
+    yield Notification('erro', 'Erro ao enviar email', msg)
+  } finally {
+    yield put({ type: actions.LOADING_FORGOT_PASSWORD, payload: false })
+  }
+
 }
 function* doRegister({ payload }) {
   try {

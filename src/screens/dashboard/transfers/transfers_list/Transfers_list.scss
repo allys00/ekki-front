@@ -1,11 +1,12 @@
 .ant-list-split {
-    height: 45vh;
+    height: 440px;
     overflow: auto;
     .ant-skeleton-paragraph {
         margin: 0
     }
     .ant-list-item-content-single {
         width: 100% !important;
+        cursor: pointer;
         .anticon {
             padding: 10px 20px;
         }

@@ -53,10 +53,11 @@ function* checkTransfer({ payload }) {
 
 function* newTransfer({ payload }) {
   try {
+    console.log('oi2')
     yield put({ type: actions.SET_LOADING_NEW_TRANSFER, payload: true })
     yield call(Post, urls.TRANSFERS, payload);
     yield call(getTransfers, payload.sender._id)
-    yield put({ type: actions.ASYNC_GET_USER, payload: payload.sender._id })
+    yield put({ type: actions.ASYNC_GET_USER, payload: payload.sender._id, action: actions.ASYNC_GET_CREDIT_CARDS })
     yield put({ type: actions.CHANGE_TRANSFER_STATUS, payload: 0 })
     yield Notification('success', 'Sucesso', 'Tranferência realizada')
   } catch (error) {
@@ -93,7 +94,17 @@ function* useCreditCard({ payload }) {
   } catch (error) {
     return Notification('error', 'Ops', 'erro ao utilizar o cartão');
   }
+}
 
+function* checkPassword({ payload }) {
+  try {
+    const state = yield select(state => state);
+    const { dashboard, transfers } = state
+    yield call(Post, urls.DO_LOGIN, { email: dashboard.userLogged.email, password: payload })
+    yield call(newTransfer, { payload: transfers.newTransfer })
+  } catch (error) {
+    return Notification('error', 'Ops', 'erro na transferencia, verifique sua senha e tente novamente');
+  }
 }
 
 export default function* MySaga() {
@@ -101,7 +112,8 @@ export default function* MySaga() {
     yield takeEvery(actions.ASYNC_CHECK_TRANSFER_IS_VALID, checkTransfer),
     yield takeEvery(actions.ASYNC_NEW_TRANSFER, newTransfer),
     yield takeEvery(actions.ASYNC_GET_TRANSFERS, getTransfers),
-    yield takeEvery(actions.ASYNC_USE_CREDIT_CARD, useCreditCard)
+    yield takeEvery(actions.ASYNC_USE_CREDIT_CARD, useCreditCard),
+    yield takeEvery(actions.ASYNC_CHECK_PASSWORD, checkPassword),
 
   ]);
 }

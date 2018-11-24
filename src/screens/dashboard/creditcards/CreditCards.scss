@@ -6,7 +6,14 @@
             justify-content: center;
         }
     }
-   
+    .add-new-card{
+        margin-bottom: 30px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 30px;
+    }
+    .msg-credit-card{
+        text-align: center;
+    }
     .form-card {
         display: flex;
         flex-flow: row wrap;

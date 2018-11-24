@@ -61,6 +61,8 @@ class CreditCards extends Component {
     return (
       <section className="credit-cards-container">
         {(!openFromModal || userLogged.credit_cards.length <= 0) && < AddCreditCard onClick={newCreditCard} loading={loading_new_credit_card} />}
+        {openFromModal &&
+          <p className="msg-credit-card">Seu saldo é insufuciente, utilize um cartão de crédito para realizar a transferência </p>}
         <h2 className="transfers-title">Seus cartões de crédito</h2>
         <div className="credit-card-list">
           <Skeleton loading={loading_get_user} active>

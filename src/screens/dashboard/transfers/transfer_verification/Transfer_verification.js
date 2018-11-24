@@ -7,7 +7,7 @@ class TransferVerification extends Component {
         const { recipient, value, credit } = this.props.newTransfer
         return (
             <section className="transfers-container">
-                <p>Transferencia para : {recipient.name}</p>
+                {recipient && <p>Transferencia para : {recipient.name}</p>}
                 {credit && <p>Valor debitado da conta : {convertToReal(value - credit.value)}</p>}
                 {credit && <p>Valor pago no crédito: {convertToReal(credit.value)}</p>}
                 {credit && <p>Numero do cartão: {credit.number}</p>}

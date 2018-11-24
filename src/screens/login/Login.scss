@@ -21,6 +21,12 @@
             }
         }
     }
+    .buttons-login {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        width: 100%;
+    }
     .login-form {
         display: flex;
         flex-direction: column;

@@ -17,6 +17,11 @@
         cursor: pointer; }
       .login-container .options .option.selected {
         background-color: #efefef; }
+  .login-container .buttons-login {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    width: 100%; }
   .login-container .login-form {
     display: flex;
     flex-direction: column;

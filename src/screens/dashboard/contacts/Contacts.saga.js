@@ -10,6 +10,9 @@ function* addContact({ payload }) {
         if (myUser.contacts.findIndex(a => a.email === payload) >= 0) {
             return yield Notification('warning', 'Atenção', 'Esse usuário já é seu contato')
         }
+        if(myUser.email === payload){
+            return yield Notification('warning', 'Atenção', 'Você não pode se adicionar')
+        }
         const { data } = yield call(Get, `${urls.GET_USER_BY_EMAIL}/${payload}`);
         const newContact = {
             name: data.name,
@@ -25,11 +28,8 @@ function* addContact({ payload }) {
             yield Notification('success', 'Sucesso', 'Contato adicionado')
         }
     } catch (error) {
-        if (error.status === 404) {
-            yield Notification('error', 'Ops!', 'Usuário não encontrado')
-        } else {
-            yield Notification('error', 'Ops!', error.message)
-        }
+        console.log(error)
+        yield Notification('error', 'Ops!', 'Erro ao Salvar contato')
     } finally {
         yield put({ type: actions.SET_LOADING_ADD_CONTACT, payload: false })
     }

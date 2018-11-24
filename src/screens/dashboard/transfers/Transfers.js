@@ -8,27 +8,34 @@ import {
   changeTransferForm,
   changeTransferStatus,
   doTransfer,
-  getTransfers,
-  clickInCard
+  clickInCard,
+  checkPassword
 } from './Transfers.actions';
-
 import { getUser } from '../Dashboard.actions'
 import TransferVerification from './transfer_verification/Transfer_verification';
 import TransfersList from './transfers_list/Transfers_list'
 import Modal from '../../../components/Modal';
-
 import './Transfers.css'
-class Trasnfers extends Component {
+import { actions } from '../../../utils/constants';
+class Transfer extends Component {
+
+  state = {
+    showPassword: false
+  }
 
   componentDidMount() {
-    const { getUser, dashboard, getTransfers } = this.props
+    const { getUser, dashboard } = this.props
     if (dashboard.userLogged._id) {
-      getUser(dashboard.userLogged._id)
+      getUser(dashboard.userLogged._id, actions.ASYNC_GET_TRANSFERS)
     } else {
       const id = sessionStorage.getItem('id')
-      getUser(id)
+      getUser(id, actions.ASYNC_GET_TRANSFERS)
     }
-    getTransfers()
+  }
+
+  checkPassword() {
+    this.props.checkPassword(this.state.password)
+    this.setState({ showPassword: false, password: '' })
   }
 
   render() {
@@ -115,12 +122,32 @@ class Trasnfers extends Component {
             <Button key="submit"
               type="primary"
               loading={loading_new_transfer}
-              onClick={() => doTransfer(newTransfer)}>
+              onClick={() => newTransfer.value > 1000 ? this.setState({ showPassword: true }) : doTransfer(newTransfer)}>
               Transferir
               </Button>,
           ]}
         >
           <TransferVerification newTransfer={newTransfer} />
+        </Modal>
+        <Modal
+          visible={this.state.showPassword}
+          title="Senha necessária para transações maiores que R$ 1.000,00"
+          onClose={() => this.setState({ showPassword: false })}
+          footer={[
+            <Button key="submit"
+              type="primary"
+              loading={false}
+              onClick={() => this.checkPassword()}>
+              Enviar
+              </Button>,
+          ]}
+        >
+          <Input
+            value={this.state.password}
+            type="password"
+            placeholder="Senha"
+            onChange={({ target }) => this.setState({ password: target.value })}
+          />
         </Modal>
       </section >
     );
@@ -131,11 +158,11 @@ const mapStateToProps = ({ transfers, dashboard }) => ({ transfers, dashboard })
 
 export default connect(mapStateToProps, {
   doTransfer,
-  getTransfers,
   checkTransfer,
   changeTransferStatus,
   getUser,
   clickInCard,
   changeTransferForm,
-})(Trasnfers);
+  checkPassword
+})(Transfer);
 
